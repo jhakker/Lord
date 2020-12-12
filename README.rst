@@ -33,6 +33,8 @@ LordScript README
   a = 1 instead of a=1
 
 - function definition
+
+::
   [def, 
     [f, 
       [arg1, arg2],   # parameters 

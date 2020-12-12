@@ -1,0 +1,8 @@
+#!/usr/bin/env lord
+
+# the standard library provides functions for reading and writing from/to standard io streams
+# write calls the C std library write function with cout is 0 (type int)
+
+write cout 'hello world
+# with default parameter file_desc=0
+write 'hello world
