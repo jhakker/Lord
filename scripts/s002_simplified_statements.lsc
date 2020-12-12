@@ -1,0 +1,14 @@
+s1='foo
+s2="bar"
+i1=10
+f1=1.2
+[s3='foobar, f2=78.1]
+[s4='baz, f3=5.5]
+[1 2 3 4]
+['a 2 'c 4]
+[a=1 b=2]
+x=[a=1 'foo]
+y=[a=1,'foo]
+
+# y=a=1 'foo
+# a = 1 instead of a=1

@@ -1,0 +1,26 @@
+#!/usr/bin/env lord
+
+# anonymous function
+def [a b]  [ret [+ a b]]
+
+# named function
+add=[def [a b] [ret [+ a b]]]
+
+# function calls
+[add 1 2]
+[add a=1 b=78.1]
+[add 'foo b='bar]
+add 1.0 b=2.0
+add [+ 1 2]
+
+f=[
+  def 
+  [a b]
+  [
+    c=[* a b]
+    [ret c]
+  ]
+]
+
+
+# [f foo a2=bar] instead of [f, foo, a2=bar] 

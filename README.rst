@@ -14,7 +14,7 @@ LordScript README
 - LORD (Lisp with ORdered Dicts)
 - embeddable into shell syntax (bash, fish, ... not xonsh cause all bracket types are already taken)
   - that's why we use [] instead of ()
-- call TDE script functions from command line
+- call lord script functions from command line
 - easily typeable for interactive use
 - interpreter, highly dynamic, no safety, interactive, easy to embed
 - functional, lazy evaluation, no explicit flow control constructs

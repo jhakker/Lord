@@ -1,0 +1,10 @@
+#!/usr/bin/env lord
+
+dict=[10 20 'foo x='bar]
+# standard library function "el" for element access 
+# access element with index 0
+el dict 0
+# acdess element with key "x"
+el dict 'x
+# synonym for el for better readability
+@ dict 0
