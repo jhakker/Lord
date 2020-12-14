@@ -44,11 +44,34 @@ LordScript README
   ]
   evaluation of [f, ...] is deferred (no need to quote it with "'" ... ?!)
 
+def not needed, just the parameters and the code as dicts
+
 - reserved words
-  - keywords
-      def, ' (quote function)
-  - standard lib functions
-    def, ', el
+  .. - keywords
+  ..     def, ' (quote function)
+  .. - standard lib functions
+  ..   def, ', at
+  
+three operators to interpret the dict data as code:
+  1. resolve symbol: string is not a literal string but looked up in the scope for an already defined symbol
+     typically this is the $ operator, which conflicts with shells
+  2. call: call a dict as a function, that is resolve the first element as a symbol for the function definition
+     and put the remaining elements as function arguments. Could be a function [call func_name arg1 arg2 ...]
+     but need to differ between assigning a dict to a position indexed field of a dict and calling it:
+     my_dict=[
+       [my_func a b]   # stored at position 0 of my_dict 
+     ]
+     my_dict=[
+       $[my_func a b]   # calls my_func and stores the result at position 0 of my_dict 
+     ]
+  3. eval, can be a function: [eval arg1 arg2 ...] all args are evaluated, standard behaviour for top level
+     of a module which feeds the REPL.
+
+- execution context
+  - two different execution contexts: 
+    - eval all entries of a module's dict
+    - call the dict
+  - provide heap and/or stack for the execution context
 
 - elementary data types
   - string, int, float
@@ -70,6 +93,13 @@ LordScript README
   - ordered dict is a multimap
     - keys don't have to be unique
     - keys can be empty "", function call, lambda function definitions
+  - declarative representation in other languages or JSON e.g. as list of two-tuples
+
+::
+    [
+    ["", "string"],
+    ["var1", "value1"]
+    ]
 
 - multiline
   first level ("main" dict)
@@ -101,7 +131,11 @@ LordScript README
   ... some code inbetween ...
   #@ payload_size='#C234       # size of payload in bytes, must be the last statement 
                                # in the code text section
-  payload is of type string with binary encoding
+  #@ heap_size=                # just dump the current heap instead of using a payload
+                               # then init the module at start with the heap dump
+  #@ heap_dump=                # url to heap dump
+  #@ stack_size=               # same for the stack (complete process dump)
+  payload / heap / stack is of type string with binary encoding
 
 - overloaded functions / inheritance
   symbol entries with same key in ordered dict 
@@ -115,10 +149,29 @@ LordScript README
 - LordRPC
 
 
+1 First step: language translators
+-------------------------------------------------------------------------------
+1.1 JSON lists to LISP
+
+reserved words:
+list
+escape a list (avoid function call on list) by making a list out of the arguments
+[list 1 2 3] returns the list [1 2 3]
+
+block
+interpret a list using eval on each entry
+[block [[setq a 1] [setq b 2]]]
+
+symbol resolution:
+instead of escaping the symbol with ', we explicitely resolve it with @
+@a
+
 TODO
 ===============================================================================
 
-1. Parser
--------------------------------------------------------------------------------
-
 - [ ] write some example scripts for parser tests
+- [ ] write converters:
+  - JSON lists to LISP
+  - write examples in python and node by using built in data initializers
+  - Lua tables to LISP
+- [ ] specify Lord syntax using a lean ordered dict notation and write parser

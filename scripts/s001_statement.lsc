@@ -1,6 +1,17 @@
-s1='foo 
-'bar
-s2="foobar"
-f1=78.1
-i1=3
+[
+s1='foo,    # symbol resolution takes place 
+'bar,
+s2="foobar",
+f1=78.1,
+i1=3,
 9.0
+]
+
+[
+s1=foo, 
+bar,
+s2="foobar",
+f1=78.1,
+i1=3,
+9.0
+]

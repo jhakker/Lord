@@ -1,0 +1,11 @@
+s1=world
+s2=[concat hello $s1]
+$[print $s2]
+
+
+# python representation
+[
+["s1", "world"],
+["s2", ["concat", "hello", "$s1"]],
+["$", ["print", "$s2"]],  # function call 
+]
