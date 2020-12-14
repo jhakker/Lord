@@ -12,14 +12,18 @@ LordScript README
 -------------------------------------------------------------------------------
 
 - LORD (Lisp with ORdered Dicts)
-- embeddable into shell syntax (bash, fish, ... not xonsh cause all bracket types are already taken)
-  - that's why we use [] instead of ()
-- call lord script functions from command line
-- easily typeable for interactive use
-- interpreter, highly dynamic, no safety, interactive, easy to embed
-- functional, lazy evaluation, no explicit flow control constructs
-  - or do explicit evaluation, then both eager and lazy evaluation is possible?!
-- one data structure (container): ordered dictionary
+- embeddable into other languages on a source code level:
+  - shell syntax (bash, fish, ... not xonsh cause all bracket types are already taken)
+    - that's why we use [] instead of () here
+  - different frontends for embedding into different languages (python, javascript, shell) 
+    with different syntax (maybe switchable through pragma statements)
+    - call lord script functions from command line
+  - show current ways of generally embedding a language in another
+    - tagged sections (<script>, php, EOF EOF blocks ...)
+      - needs support of the runtime
+    - strings
+      - tedious to do parameter conversions
+  - we use other higher language primitives than strings common to most languages (lists, maps) 
 - code is data!!! (need to quote code to mark is as data or vice versa -> explicit/lazy evaluation)
   [f, a1, a2]
   [f, a1=foo, a2=78.1]
@@ -27,7 +31,14 @@ LordScript README
   f foo a2=bar (for top level dicts only)
   a1=foo
   [f, [add, 1, 2]]
-
+- interpreter, highly dynamic, no safety, interactive, easy to embed
+- easily typeable for interactive use
+- RPC
+  - build in support for rpc
+  - binary data without transcoding to text representations
+- functional, lazy evaluation, no explicit flow control constructs
+  - or do explicit evaluation, then both eager and lazy evaluation is possible?!
+- one data structure (container): ordered dictionary
 - ambiguities, check which to allow
   [f foo a2=bar] instead of [f, foo, a2=bar] 
   a = 1 instead of a=1
@@ -145,8 +156,6 @@ three operators to interpret the dict data as code:
 
 - types / templates / inheritance
   meta dicts like in Lua
-
-- LordRPC
 
 
 1 First step: language translators
