@@ -12,6 +12,8 @@ LordScript README
 -------------------------------------------------------------------------------
 
 - LORD (Lisp with ORdered Dicts)
+  The genesis (boot-strapping) of a programming language.
+  In the beginning there was data ...
 - embeddable into other languages on a source code level:
   - shell syntax (bash, fish, ... not xonsh cause all bracket types are already taken)
     - that's why we use [] instead of () here
